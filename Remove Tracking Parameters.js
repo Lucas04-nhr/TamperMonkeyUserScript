@@ -45,6 +45,22 @@
         }
     }
 
+    // Function to periodically check the clipboard for URLs
+    function checkClipboard() {
+        const currentClipboard = GM_getClipboard('text');
+
+        // Check if the clipboard content is a URL
+        try {
+            new URL(currentClipboard);
+            // If it's a URL, remove tracking parameters
+            const newClipboardContent = removeTrackingParameters(currentClipboard);
+            // Update the clipboard data
+            GM_setClipboard(newClipboardContent, 'text');
+        } catch (error) {
+            // Not a URL, do nothing
+        }
+    }
+
     // Remove tracking parameters when the page loads
     window.addEventListener('load', function() {
         const currentURL = window.location.href;
@@ -58,4 +74,7 @@
         // Add event listener for copy event
         document.addEventListener('copy', handleCopy);
     });
+
+    // Periodically check the clipboard for URLs
+    setInterval(checkClipboard, 1000); // Adjust the interval as needed
 })();
