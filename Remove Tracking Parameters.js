@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Remove Tracking Parameters
 // @namespace    http://tampermonkey.net/
-// @version      0.3
+// @version      0.4
 // @description  Remove common tracking parameters from URLs when copying
 // @author       Lucas04
 // @match        *://*/*
@@ -15,7 +15,7 @@
 
     // Function to remove tracking parameters from the URL
     function removeTrackingParameters(url) {
-        const trackingParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'fbclid', 'msclkid', 'mc_eid', 'mc_cid', 'yclid', 'dclid', 'gclsrc', 'vd_source', 'vd_campaign', 'vd_term', 'vd_content', 'vd_medium', 'vd_gclid', 'vd_fbclid', 'vd_msclkid', 'vd_mc_eid', 'vd_mc_cid', 'vd_yclid', 'vd_dclid', 'vd_gclsrc', 'vd_utm_source', 'vd_utm_medium', 'vd_utm_campaign', 'vd_utm_term', 'vd_utm_content', 'vd_utm_id', 'vd_utm_name'];
+        const trackingParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'fbclid', 'msclkid', 'mc_eid', 'mc_cid', 'yclid', 'dclid', 'gclsrc', 'vd_source', 'vd_campaign', 'vd_term', 'vd_content', 'vd_medium', 'vd_gclid', 'vd_fbclid', 'vd_msclkid', 'vd_mc_eid', 'vd_mc_cid', 'vd_yclid', 'vd_dclid', 'vd_gclsrc', 'vd_utm_source', 'vd_utm_medium', 'vd_utm_campaign', 'vd_utm_term', 'vd_utm_content', 'vd_utm_id', 'vd_utm_name', 'share_source', 'share_medium', 'share_campaign', 'share_term', 'share_content', 'share_id', 'share_name', 'share_gclid', 'share_fbclid', 'share_msclkid', 'share_mc_eid', 'share_mc_cid', 'share_yclid', 'share_dclid', 'share_gclsrc', 'share_utm_source', 'share_utm_medium', 'share_utm_campaign', 'share_utm_term', 'share_utm_content', 'share_utm_id', 'share_utm_name', 'share_utm_source', 'share_utm_medium', 'share_utm_campaign', 'share_utm_term', 'share_utm_content'];
 
         // Parse the URL
         const urlObj = new URL(url);
