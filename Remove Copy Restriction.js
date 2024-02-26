@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         Remove Copy Restriction
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  Remove copy restriction on web pages
-// @author       You
+// @author       Lucas04
 // @match        *://*/*
 // @updateURL    https://raw.githubusercontent.com/Lucas04-nhr/TamperMonkeyUserScript/main/Remove%20Copy%20Restriction.js
 // @downloadURL  https://raw.githubusercontent.com/Lucas04-nhr/TamperMonkeyUserScript/main/Remove%20Copy%20Restriction.js
