@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Remove Tracking Parameters
 // @namespace    http://tampermonkey.net/
-// @version      0.2
+// @version      0.3
 // @description  Remove common tracking parameters from URLs when copying
 // @author       Lucas04
 // @match        *://*/*
