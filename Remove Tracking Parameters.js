@@ -32,16 +32,17 @@
         const clipboardData = event.clipboardData || window.clipboardData;
         let copiedText = clipboardData.getData('text/plain');
 
-        // Check if the copied text is a URL
-        try {
-            new URL(copiedText);
+        // Check if the copied text contains a URL using regex
+        const urlRegex = /(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/;
+        const matches = copiedText.match(urlRegex);
+
+        if (matches) {
             // If it's a URL, remove tracking parameters
-            copiedText = removeTrackingParameters(copiedText);
+            const url = matches[0];
+            copiedText = removeTrackingParameters(url);
             // Update the clipboard data
             GM_setClipboard(copiedText, 'text');
             event.preventDefault();
-        } catch (error) {
-            // Not a URL, do nothing
         }
     }
 
@@ -49,15 +50,16 @@
     function checkClipboard() {
         const currentClipboard = GM_getClipboard('text');
 
-        // Check if the clipboard content is a URL
-        try {
-            new URL(currentClipboard);
+        // Check if the clipboard content contains a URL using regex
+        const urlRegex = /(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/;
+        const matches = currentClipboard.match(urlRegex);
+
+        if (matches) {
             // If it's a URL, remove tracking parameters
-            const newClipboardContent = removeTrackingParameters(currentClipboard);
+            const url = matches[0];
+            const newClipboardContent = removeTrackingParameters(url);
             // Update the clipboard data
             GM_setClipboard(newClipboardContent, 'text');
-        } catch (error) {
-            // Not a URL, do nothing
         }
     }
 
