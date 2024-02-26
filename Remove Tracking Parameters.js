@@ -6,6 +6,8 @@
 // @author       Lucas04
 // @match        *://*/*
 // @grant        GM_setClipboard
+// @updateURL    https://raw.githubusercontent.com/Lucas04-nhr/TamperMonkeyUserScript/main/Remove%20Tracking%20Parameters.js
+// @downloadURL  https://raw.githubusercontent.com/Lucas04-nhr/TamperMonkeyUserScript/main/Remove%20Tracking%20Parameters.js
 // ==/UserScript==
 
 (function() {
@@ -13,7 +15,7 @@
 
     // Function to remove tracking parameters from the URL
     function removeTrackingParameters(url) {
-        const trackingParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+        const trackingParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'fbclid', 'msclkid', 'mc_eid', 'mc_cid', 'yclid', 'dclid', 'gclsrc', 'vd_source', 'vd_campaign', 'vd_term', 'vd_content', 'vd_medium', 'vd_gclid', 'vd_fbclid', 'vd_msclkid', 'vd_mc_eid', 'vd_mc_cid', 'vd_yclid', 'vd_dclid', 'vd_gclsrc', 'vd_utm_source', 'vd_utm_medium', 'vd_utm_campaign', 'vd_utm_term', 'vd_utm_content', 'vd_utm_id', 'vd_utm_name'];
 
         // Parse the URL
         const urlObj = new URL(url);

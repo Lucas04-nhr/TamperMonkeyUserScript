@@ -10,7 +10,8 @@
 // @match        https://scholar.google.com.fr/*
 // @match        https://scholar.google.com.hk/*
 // @match        https://old.igem.org/*
-
+// @updateURL    https://raw.githubusercontent.com/Lucas04-nhr/TamperMonkeyUserScript/main/Automatically%20Open%20Links%20in%20New%20Tab.js
+// @downloadURL  https://raw.githubusercontent.com/Lucas04-nhr/TamperMonkeyUserScript/main/Automatically%20Open%20Links%20in%20New%20Tab.js
 // @grant        none
 // ==/UserScript==
 
