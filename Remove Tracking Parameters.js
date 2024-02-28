@@ -4,7 +4,7 @@
 // @version      0.6
 // @description  Remove common tracking parameters from URLs when copying
 // @author       Lucas04
-// @match        *://*/*
+// @match        *://*.bilibili.com/*
 // @grant        GM_setClipboard
 // @updateURL    https://raw.githubusercontent.com/Lucas04-nhr/TamperMonkeyUserScript/main/Remove%20Tracking%20Parameters.js
 // @downloadURL  https://raw.githubusercontent.com/Lucas04-nhr/TamperMonkeyUserScript/main/Remove%20Tracking%20Parameters.js
