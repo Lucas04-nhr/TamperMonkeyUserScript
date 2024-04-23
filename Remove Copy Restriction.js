@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Remove Copy Restriction
 // @namespace    http://tampermonkey.net/
-// @version      0.2
+// @version      0.5
 // @description  Remove copy restriction on web pages
 // @author       Lucas04
 // @match        *://*/*
