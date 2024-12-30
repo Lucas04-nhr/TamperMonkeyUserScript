@@ -4,15 +4,13 @@
 // @name:zh-CN   绕过 GitLab 地区限制
 // @name:zh-TW   繞過 GitLab 地區限制
 // @namespace    http://tampermonkey.net/
-// @version      0.4.1
+// @version      0.4.0
 // @description:en  Bypass the GitLab Region Restriction by modifying the navigator.language field
 // @description:zh-CN  通过修改 navigator.language 字段绕过 GitLab 地区限制
 // @description:zh-TW  通過修改 navigator.language 字段繞過 GitLab 地區限制
 // @author       Lucas
 // @match        https://*.gitlab.com/*
 // @grant        GM_registerMenuCommand
-// @grant        GM_getValue
-// @grant        GM_setValue
 // @license      GPLv3
 // @downloadURL https://update.greasyfork.org/scripts/522277/Bypass%20the%20GitLab%20Region%20Restriction.user.js
 // @updateURL https://update.greasyfork.org/scripts/522277/Bypass%20the%20GitLab%20Region%20Restriction.meta.js
@@ -58,8 +56,6 @@
           selectedLanguage = userInput;
           GM_setValue('selectedLanguage', selectedLanguage);
           alert(`语言已更改为：${selectedLanguage}`);
-          // 重新加载页面以应用更改
-          location.reload();
       } else if (userInput) {
           alert('无效的语言代码，请重试！');
       }
