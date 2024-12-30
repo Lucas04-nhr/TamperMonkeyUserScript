@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bypass the GitLab Region Restriction
 // @namespace    http://tampermonkey.net/
-// @version      0.5.0
+// @version      0.5.1
 // @description  Bypass the GitLab Region Restriction by modifying the navigator.language field
 // @author       Lucas
 // @match        https://*.gitlab.com/*
@@ -26,7 +26,7 @@
       location.reload();
   }
 
-  const icon = isEnabled ? '🟢' : '🔴';
+  const icon = isEnabled ? '✅' : '❌';
   GM_registerMenuCommand('Toggle Bypass (current: ' + (isEnabled ? 'enabled' : 'disabled') + ')', toggleBypass, icon);
 
   const originalLanguage = 'zh-CN';
