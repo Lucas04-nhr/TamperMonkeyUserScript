@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bypass the GitLab Region Restriction
 // @namespace    http://tampermonkey.net/
-// @version      0.4.9
+// @version      0.5.0
 // @description  Bypass the GitLab Region Restriction by modifying the navigator.language field
 // @author       Lucas
 // @match        https://*.gitlab.com/*
