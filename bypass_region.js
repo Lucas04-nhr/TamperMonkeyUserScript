@@ -9,6 +9,7 @@
 // @grant        GM_setValue
 // @grant        GM_getValue
 // @license      GPLv3
+// @icon         https://www.gitlab.com/favicon.png
 // @downloadURL https://update.greasyfork.org/scripts/522277/Bypass%20the%20GitLab%20Region%20Restriction.user.js
 // @updateURL https://update.greasyfork.org/scripts/522277/Bypass%20the%20GitLab%20Region%20Restriction.meta.js
 // ==/UserScript==
@@ -25,7 +26,8 @@
       location.reload();
   }
 
-  GM_registerMenuCommand('Toggle Bypass (current: ' + (isEnabled ? 'enabled' : 'disabled') + ')', toggleBypass);
+  const icon = isEnabled ? '🟢' : '🔴';
+  GM_registerMenuCommand('Toggle Bypass (current: ' + (isEnabled ? 'enabled' : 'disabled') + ')', toggleBypass, icon);
 
   const originalLanguage = 'zh-CN';
   const newLanguage = 'en-US';
