@@ -1,4 +1,5 @@
 // ==UserScript==
+// @name         Bypass the GitLab Region Restriction
 // @name:en      Bypass the GitLab Region Restriction
 // @name:zh-CN   绕过 GitLab 地区限制
 // @name:zh-TW   繞過 GitLab 地區限制
