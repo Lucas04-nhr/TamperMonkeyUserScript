@@ -4,7 +4,7 @@
 // @name:zh-CN   绕过 GitLab 地区限制
 // @name:zh-TW   繞過 GitLab 地區限制
 // @namespace    http://tampermonkey.net/
-// @version      0.4.5
+// @version      0.4.6
 // @description:en  Bypass the GitLab Region Restriction by modifying the navigator.language field
 // @description:zh-CN  通过修改 navigator.language 字段绕过 GitLab 地区限制
 // @description:zh-TW  通過修改 navigator.language 字段繞過 GitLab 地區限制
@@ -19,8 +19,6 @@
 (function() {
   'use strict';
 
-  const newLanguage = 'en-US';
-
   let isEnabled = true;
 
   function toggleBypass() {
@@ -30,8 +28,8 @@
 
   GM_registerMenuCommand('Toggle Bypass', toggleBypass);
 
-  const originalLanguage = navigator.language;
-  const originalLanguages = navigator.languages;
+  const originalLanguage = 'zh-CN';
+  const newLanguage = 'en-US';
 
   Object.defineProperty(navigator, 'language', {
       get: function() {
@@ -41,7 +39,7 @@
 
   Object.defineProperty(navigator, 'languages', {
       get: function() {
-          return isEnabled ? [newLanguage] : originalLanguages;
+          return isEnabled ? [newLanguage] : [originalLanguage];
       }
   });
 })();
