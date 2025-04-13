@@ -20,3 +20,9 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e =
   document.cookie = `night_mode=${isDarkMode};path=/;domain=.twitter.com;secure`;
   document.cookie = `night_mode=${isDarkMode};path=/;domain=.x.com;secure`;
 });
+
+window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', e => {
+  const isLightMode = e.matches ? 0 : 1;
+  document.cookie = `night_mode=${isLightMode};path=/;domain=.twitter.com;secure`;
+  document.cookie = `night_mode=${isLightMode};path=/;domain=.x.com;secure`;
+});
