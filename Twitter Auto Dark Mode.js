@@ -6,7 +6,7 @@
 // @name     Twitter Auto Dark Mode
 // @name-en  Twitter Auto Dark Mode
 // @name-zh-CN  Twitter自动深色模式
-// @version  1.4.0
+// @version  1.4.5
 // @grant        GM_registerMenuCommand
 // @grant        GM_setValue
 // @grant        GM_getValue
@@ -45,10 +45,12 @@
   GM_registerMenuCommand('Set Dark Mode Variant (current: ' + darkModeSettings[darkModeVariant]?.name + ')', () => {
       const newVariant = prompt('Enter dark mode variant (0: Light, 1: Dim, 2: Lights out)', darkModeVariant);
       if (newVariant !== null) {
-          if (!['0', '1', '2'].includes(newVariant)) {
+            while (!['0', '1', '2'].includes(newVariant)) {
               alert('Invalid input. Please enter 0, 1, or 2.');
-              return;
-          }
+              const retryVariant = prompt('Enter dark mode variant (0: Light, 1: Dim, 2: Lights out)', darkModeVariant);
+              if (retryVariant === null) return;
+              newVariant = retryVariant;
+            }
           GM_setValue('darkModeVariant', newVariant);
           alert(`Dark mode variant set to ${darkModeSettings[newVariant]?.name}`);
           location.reload();
