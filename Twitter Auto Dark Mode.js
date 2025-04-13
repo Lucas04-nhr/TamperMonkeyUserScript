@@ -6,7 +6,7 @@
 // @name     Twitter Auto Dark Mode
 // @name-en  Twitter Auto Dark Mode
 // @name-zh-CN  Twitter自动深色模式
-// @version  1.3.5
+// @version  1.3.6
 // @grant        GM_registerMenuCommand
 // @grant        GM_setValue
 // @grant        GM_getValue
@@ -42,7 +42,6 @@
   const currentSetting = darkModeSettings[darkModeVariant];
   console.log(`Current dark mode setting: ${currentSetting.name}`);
   console.log(`Current dark mode variant: ${darkModeVariant}`);
-  const darkModeIcon = darkModeVariant === '2' ? '🌙' : darkModeVariant === '1' ? '🌗' : '🌞';
   GM_registerMenuCommand('Set Dark Mode Variant (current: ' + darkModeVariant + ')', () => {
       const newVariant = prompt('Enter dark mode variant (0: Light, 1: Dim, 2: Lights out)', darkModeVariant);
       if (newVariant !== null) {
@@ -50,7 +49,7 @@
           alert(`Dark mode variant set to ${newVariant}`);
           location.reload();
       }
-  }, darkModeIcon);
+  });
 
   // Set dark mode based on system preference
   if (isEnabled) {
@@ -60,11 +59,11 @@
       document.cookie = `night_mode=${isDarkMode};path=/;domain=.x.com;secure`;
     });
 
-    window.matchMedia("(prefers-color-scheme: light)").addEventListener('change', e => {
-      const isLightMode = e.matches ? '0' : '1';
-      document.cookie = `night_mode=${isLightMode};path=/;domain=.twitter.com;secure`;
-      document.cookie = `night_mode=${isLightMode};path=/;domain=.x.com;secure`;
-    });
-  }
+  //   window.matchMedia("(prefers-color-scheme: light)").addEventListener('change', e => {
+  //     const isLightMode = e.matches ? '0' : '1';
+  //     document.cookie = `night_mode=${isLightMode};path=/;domain=.twitter.com;secure`;
+  //     document.cookie = `night_mode=${isLightMode};path=/;domain=.x.com;secure`;
+  //   });
+  // }
 
 })();
