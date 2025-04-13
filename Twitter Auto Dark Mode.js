@@ -3,10 +3,10 @@
 // @author       Lucas
 // @license      GPLv3
 // @icon         https://abs.twimg.com/favicons/twitter.ico
-// @name     Twitter auto dark mode
-// @name-en  Twitter auto dark mode
+// @name     Twitter Auto Dark Mode
+// @name-en  Twitter Auto Dark Mode
 // @name-zh-CN  Twitter自动深色模式
-// @version  1.3.4
+// @version  1.3.5
 // @grant        GM_registerMenuCommand
 // @grant        GM_setValue
 // @grant        GM_getValue
