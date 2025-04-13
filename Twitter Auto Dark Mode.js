@@ -6,7 +6,7 @@
 // @name     Twitter auto darkmode
 // @name-en  Twitter auto darkmode
 // @name-zh-CN  Twitter自动深色模式
-// @version  1.2.2
+// @version  1.3.0
 // @grant        GM_registerMenuCommand
 // @grant        GM_setValue
 // @grant        GM_getValue
@@ -21,7 +21,8 @@
 // ==/UserScript==
 
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-  const isDarkMode = e.matches ? 1 : 0;
+  let userPreference = GM_getValue('darkModePreference', 2); // Default to lights out mode
+  const isDarkMode = e.matches ? userPreference : 0;
   document.cookie = `night_mode=${isDarkMode};path=/;domain=.twitter.com;secure`;
   document.cookie = `night_mode=${isDarkMode};path=/;domain=.x.com;secure`;
 });
@@ -32,33 +33,18 @@ window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', e 
   document.cookie = `night_mode=${isLightMode};path=/;domain=.x.com;secure`;
 });
 
-(function() {
-  'use strict';
+// Add menu commands to Tampermonkey dropdown
+GM_registerMenuCommand("Set Dark Mode: Lights Out", () => {
+  GM_setValue('darkModePreference', 2);
+  alert("Dark mode preference set to Lights Out.");
+});
 
-  let isEnabled = GM_getValue('isEnabled', false);
+GM_registerMenuCommand("Set Dark Mode: Dim", () => {
+  GM_setValue('darkModePreference', 1);
+  alert("Dark mode preference set to Dim.");
+});
 
-  function toggleBypass() {
-      isEnabled = !isEnabled;
-      GM_setValue('isEnabled', isEnabled);
-      alert(`Bypass is now ${isEnabled ? 'enabled' : 'disabled'}`);
-      location.reload();
-  }
-
-  const icon = isEnabled ? '✅' : '❌';
-  GM_registerMenuCommand('Toggle Auto Change Theme (current: ' + (isEnabled ? 'enabled' : 'disabled') + ')', toggleBypass, icon);
-
-  const originalLanguage = 'zh-CN';
-  const newLanguage = 'en-US';
-
-  Object.defineProperty(navigator, 'language', {
-      get: function() {
-          return isEnabled ? newLanguage : originalLanguage;
-      }
-  });
-
-  Object.defineProperty(navigator, 'languages', {
-      get: function() {
-          return isEnabled ? [newLanguage] : [originalLanguage];
-      }
-  });
-})();
+GM_registerMenuCommand("Set Dark Mode: Off", () => {
+  GM_setValue('darkModePreference', 0);
+  alert("Dark mode preference set to Off.");
+});
