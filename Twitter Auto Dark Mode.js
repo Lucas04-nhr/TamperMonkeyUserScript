@@ -6,7 +6,7 @@
 // @name     Twitter auto darkmode
 // @name-en  Twitter auto darkmode
 // @name-zh-CN  Twitter自动深色模式
-// @version  1.3.1
+// @version  1.3.2
 // @grant        GM_registerMenuCommand
 // @grant        GM_setValue
 // @grant        GM_getValue
@@ -25,7 +25,6 @@
   'use strict';
 
   let isEnabled = GM_getValue('isEnabled', true);
-  const icon = isEnabled ? '✅' : '❌';
 
   function toggleAutoDarkMode() {
     isEnabled = !isEnabled;
@@ -34,7 +33,7 @@
     location.reload();
   }
 
-  GM_registerMenuCommand('Toggle Auto Dark Mode', toggleAutoDarkMode);
+  GM_registerMenuCommand(`Toggle Auto Dark Mode (${isEnabled ? '✅ Enabled' : '❌ Disabled'})`, toggleAutoDarkMode);
 
   let darkModePreference = GM_getValue('darkModePreference', 2);
   const darkModeOptions = {
@@ -42,9 +41,12 @@
     '2': 'Dim mode',
     '0': 'Light mode',
   };
-  const darkModeIcon = darkModeOptions[darkModePreference] ? '✅' : '❌';
+
   function setDarkModePreference() {
-    const newPreference = prompt('Enter dark mode preference (1: Lights out mode, 2: Dim mode, 0: Light mode):', darkModePreference);
+    const newPreference = prompt(
+      `Enter dark mode preference:\n1: Lights out mode\n2: Dim mode\n0: Light mode`,
+      darkModePreference
+    );
     if (newPreference in darkModeOptions) {
       GM_setValue('darkModePreference', newPreference);
       alert(`Dark mode preference set to ${darkModeOptions[newPreference]}`);
@@ -53,29 +55,26 @@
       alert('Invalid input. Please enter 1, 2, or 0.');
     }
   }
-  GM_registerMenuCommand('Set Dark Mode Preference', setDarkModePreference, darkModeIcon);
 
-  // Function to set the dark mode cookie
-  function setDarkModeCookie() {
-    if (isEnabled) {
-      const darkModeValue = darkModePreference;
-      document.cookie = `night_mode=${darkModeValue};path=/;domain=.twitter.com;secure`;
-      document.cookie = `night_mode=${darkModeValue};path=/;domain=.x.com;secure`;
-    }
-  }
-  // Set the dark mode cookie on page load
-  setDarkModeCookie();
+  GM_registerMenuCommand(
+    `Set Dark Mode Preference (Current: ${darkModeOptions[darkModePreference]})`,
+    setDarkModePreference
+  );
 
-  // Listen for changes in the system color scheme
+  // Function to set the dark mode automatically
+  
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-    const isDarkMode = e.matches ? darkModePreference : 0;
+    let userPreference = GM_getValue('darkModePreference', 2); // Default to lights out mode
+    const isDarkMode = e.matches ? userPreference : 0;
     document.cookie = `night_mode=${isDarkMode};path=/;domain=.twitter.com;secure`;
     document.cookie = `night_mode=${isDarkMode};path=/;domain=.x.com;secure`;
   });
+  
   window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', e => {
     const isLightMode = e.matches ? 0 : 1;
     document.cookie = `night_mode=${isLightMode};path=/;domain=.twitter.com;secure`;
     document.cookie = `night_mode=${isLightMode};path=/;domain=.x.com;secure`;
   });
   
+    
 })();
