@@ -13,7 +13,6 @@
 // @description Automatically set Twitter dark mode based on system preference.
 // @description-en  Automatically set Twitter dark mode based on system preference.
 // @description-zh-CN  根据系统偏好自动设置Twitter深色模式。
-// @grant    none
 // @match    *://twitter.com/*
 // @match    *://x.com/*
 // @downloadURL https://update.greasyfork.org/scripts/532689/Twitter%20auto%20darkmode.user.js
