@@ -6,7 +6,7 @@
 // @name     Twitter auto darkmode
 // @name-en  Twitter auto darkmode
 // @name-zh-CN  Twitter自动深色模式
-// @version  1.3.2
+// @version  1.3.3
 // @grant        GM_registerMenuCommand
 // @grant        GM_setValue
 // @grant        GM_getValue
@@ -20,61 +20,52 @@
 // @updateURL https://update.greasyfork.org/scripts/532689/Twitter%20auto%20darkmode.meta.js
 // ==/UserScript==
 
-// Add menu commands to Tampermonkey dropdown
 (function() {
-  'use strict';
+  const isEnabled = GM_getValue('isEnabled', true);
+  const darkModeVariant = GM_getValue('darkModeVariant', '2');
 
-  let isEnabled = GM_getValue('isEnabled', true);
-
-  function toggleAutoDarkMode() {
-    isEnabled = !isEnabled;
-    GM_setValue('isEnabled', isEnabled);
-    alert(`Auto dark mode is now ${isEnabled ? 'enabled' : 'disabled'}`);
-    location.reload();
-  }
-
-  GM_registerMenuCommand(`Toggle Auto Dark Mode (${isEnabled ? '✅ Enabled' : '❌ Disabled'})`, toggleAutoDarkMode);
-
-  let darkModePreference = GM_getValue('darkModePreference', 2);
-  const darkModeOptions = {
-    '1': 'Lights out mode',
-    '2': 'Dim mode',
-    '0': 'Light mode',
-  };
-
-  function setDarkModePreference() {
-    const newPreference = prompt(
-      `Enter dark mode preference:\n1: Lights out mode\n2: Dim mode\n0: Light mode`,
-      darkModePreference
-    );
-    if (newPreference in darkModeOptions) {
-      GM_setValue('darkModePreference', newPreference);
-      alert(`Dark mode preference set to ${darkModeOptions[newPreference]}`);
+  function toggleAutoChange() {
+      const newValue = !isEnabled;
+      GM_setValue('isEnabled', newValue);
+      alert(`Auto change is now ${newValue ? 'enabled' : 'disabled'}`);
       location.reload();
-    } else {
-      alert('Invalid input. Please enter 1, 2, or 0.');
-    }
   }
 
-  GM_registerMenuCommand(
-    `Set Dark Mode Preference (Current: ${darkModeOptions[darkModePreference]})`,
-    setDarkModePreference
-  );
+  const enableIcon = isEnabled ? '✅' : '❌';
+  GM_registerMenuCommand('Toggle Auto Change (current: ' + (isEnabled ? 'enabled' : 'disabled') + ')', toggleAutoChange, enableIcon);
 
-  // Function to set the dark mode automatically
-  
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-    let userPreference = GM_getValue('darkModePreference', 2); // Default to lights out mode
-    const isDarkMode = e.matches ? userPreference : 0;
-    document.cookie = `night_mode=${isDarkMode};path=/;domain=.twitter.com;secure`;
-    document.cookie = `night_mode=${isDarkMode};path=/;domain=.x.com;secure`;
-  });
-  
-  window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', e => {
-    const isLightMode = e.matches ? 0 : 1;
-    document.cookie = `night_mode=${isLightMode};path=/;domain=.twitter.com;secure`;
-    document.cookie = `night_mode=${isLightMode};path=/;domain=.x.com;secure`;
-  });
-  
-    
+ // Set dark mode settings
+  const darkModeSettings = {
+      '0': { name: 'Light', value: '0' },
+      '1': { name: 'Dim', value: '1' },
+      '2': { name: 'Lights out', value: '2' }
+  };
+  const currentSetting = darkModeSettings[darkModeVariant];
+  console.log(`Current dark mode setting: ${currentSetting.name}`);
+  console.log(`Current dark mode variant: ${darkModeVariant}`);
+  const darkModeIcon = darkModeVariant === '2' ? '🌙' : darkModeVariant === '1' ? '🌗' : '🌞';
+  GM_registerMenuCommand('Set Dark Mode Variant (current: ' + darkModeVariant + ')', () => {
+      const newVariant = prompt('Enter dark mode variant (0: Light, 1: Dim, 2: Lights out)', darkModeVariant);
+      if (newVariant !== null) {
+          GM_setValue('darkModeVariant', newVariant);
+          alert(`Dark mode variant set to ${newVariant}`);
+          location.reload();
+      }
+  }, darkModeIcon);
+
+  // Set dark mode based on system preference
+  if (isEnabled) {
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', e => {
+      const isDarkMode = e.matches ? darkModeVariant : '0';
+      document.cookie = `night_mode=${isDarkMode};path=/;domain=.twitter.com;secure`;
+      document.cookie = `night_mode=${isDarkMode};path=/;domain=.x.com;secure`;
+    });
+
+    window.matchMedia("(prefers-color-scheme: light)").addEventListener('change', e => {
+      const isLightMode = e.matches ? '0' : '1';
+      document.cookie = `night_mode=${isLightMode};path=/;domain=.twitter.com;secure`;
+      document.cookie = `night_mode=${isLightMode};path=/;domain=.x.com;secure`;
+    });
+  }
+
 })();
