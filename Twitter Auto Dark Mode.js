@@ -6,7 +6,7 @@
 // @name     Twitter Auto Dark Mode
 // @name-en  Twitter Auto Dark Mode
 // @name-zh-CN  Twitter自动深色模式
-// @version  1.3.8
+// @version  1.4.0
 // @grant        GM_registerMenuCommand
 // @grant        GM_setValue
 // @grant        GM_getValue
@@ -42,28 +42,40 @@
   const currentSetting = darkModeSettings[darkModeVariant];
   console.log(`Current dark mode setting: ${currentSetting.name}`);
   console.log(`Current dark mode variant: ${darkModeVariant}`);
-  GM_registerMenuCommand('Set Dark Mode Variant (current: ' + darkModeVariant + ')', () => {
+  GM_registerMenuCommand('Set Dark Mode Variant (current: ' + darkModeSettings[darkModeVariant]?.name + ')', () => {
       const newVariant = prompt('Enter dark mode variant (0: Light, 1: Dim, 2: Lights out)', darkModeVariant);
       if (newVariant !== null) {
+          if (!['0', '1', '2'].includes(newVariant)) {
+              alert('Invalid input. Please enter 0, 1, or 2.');
+              return;
+          }
           GM_setValue('darkModeVariant', newVariant);
-          alert(`Dark mode variant set to ${newVariant}`);
+          alert(`Dark mode variant set to ${darkModeSettings[newVariant]?.name}`);
           location.reload();
       }
   });
 
   // Set dark mode based on system preference
   if (isEnabled) {
-    window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', e => {
-      const isDarkMode = e.matches ? darkModeVariant : '0';
+    const applyDarkMode = () => {
+      const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? darkModeVariant : '0';
       document.cookie = `night_mode=${isDarkMode};path=/;domain=.twitter.com;secure`;
       document.cookie = `night_mode=${isDarkMode};path=/;domain=.x.com;secure`;
+    };
+
+    // Apply dark mode on page load
+    applyDarkMode();
+
+    // Listen for system preference changes
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', applyDarkMode);
+    window.matchMedia("(prefers-color-scheme: light)").addEventListener('change', applyDarkMode);
+
+    // Listen for changes to dark mode variant
+    const observer = new MutationObserver(() => {
+      applyDarkMode();
     });
 
-  //   window.matchMedia("(prefers-color-scheme: light)").addEventListener('change', e => {
-  //     const isLightMode = e.matches ? '0' : '1';
-  //     document.cookie = `night_mode=${isLightMode};path=/;domain=.twitter.com;secure`;
-  //     document.cookie = `night_mode=${isLightMode};path=/;domain=.x.com;secure`;
-  //   });
-   }
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-dark-mode-variant'] });
+  }
 
 })();
