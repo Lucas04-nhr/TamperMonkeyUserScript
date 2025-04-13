@@ -6,13 +6,15 @@
 // @name     Twitter auto darkmode
 // @name-en  Twitter auto darkmode
 // @name-zh-CN  Twitter自动深色模式
-// @version  1.0
+// @version  1.1.0
 // @description Automatically set Twitter dark mode based on system preference.
 // @description-en  Automatically set Twitter dark mode based on system preference.
 // @description-zh-CN  根据系统偏好自动设置Twitter深色模式。
 // @grant    none
 // @match    *://twitter.com/*
 // @match    *://x.com/*
+// @downloadURL https://update.greasyfork.org/scripts/532689/Twitter%20auto%20darkmode.user.js
+// @updateURL https://update.greasyfork.org/scripts/532689/Twitter%20auto%20darkmode.meta.js
 // ==/UserScript==
 
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
