@@ -6,7 +6,7 @@
 // @name     Twitter Auto Dark Mode
 // @name-en  Twitter Auto Dark Mode
 // @name-zh-CN  Twitter自动深色模式
-// @version  1.4.5
+// @version  1.5.0
 // @grant        GM_registerMenuCommand
 // @grant        GM_setValue
 // @grant        GM_getValue
