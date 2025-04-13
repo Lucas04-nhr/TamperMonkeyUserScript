@@ -6,7 +6,7 @@
 // @name     Twitter auto darkmode
 // @name-en  Twitter auto darkmode
 // @name-zh-CN  Twitter自动深色模式
-// @version  1.2.1
+// @version  1.2.2
 // @grant        GM_registerMenuCommand
 // @grant        GM_setValue
 // @grant        GM_getValue
@@ -61,4 +61,4 @@ window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', e 
           return isEnabled ? [newLanguage] : [originalLanguage];
       }
   });
-}
+})();
