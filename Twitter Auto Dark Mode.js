@@ -64,6 +64,6 @@
   //     document.cookie = `night_mode=${isLightMode};path=/;domain=.twitter.com;secure`;
   //     document.cookie = `night_mode=${isLightMode};path=/;domain=.x.com;secure`;
   //   });
-  // }
+   }
 
 })();
