@@ -2,12 +2,14 @@
 // @name         修复缩放异常
 // @name-en      Douyin Scale Fix
 // @namespace    http://tampermonkey.net/
-// @version      1.9.0
+// @version      1.9.1
 // @description  修复抖音右下角 positionBox 元素缩放异常
 // @description-en  Fix the scale issue of the positionBox element in Douyin
 // @author       Lucas
 // @match        *://*.douyin.com/*
 // @match        *://*.iesdouyin.com/*
+// @icon         https://douyin.com/favicon.ico
+// @icon64       https://douyin.com/favicon.ico
 // @license      GPLv3
 // @grant        none
 // @downloadURL https://update.greasyfork.org/scripts/533338/%E4%BF%AE%E5%A4%8D%E7%BC%A9%E6%94%BE%E5%BC%82%E5%B8%B8.user.js
