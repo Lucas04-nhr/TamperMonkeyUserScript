@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         修复缩放异常
 // @namespace    http://tampermonkey.net/
-// @version      1.9.5
+// @version      1.9.8
 // @description  修复抖音右下角 positionBox 元素缩放异常
 // @author       Lucas
 // @match        *://*.douyin.com/*
