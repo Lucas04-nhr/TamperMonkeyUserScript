@@ -1,12 +1,15 @@
 // ==UserScript==
 // @name         修复缩放异常
 // @namespace    http://tampermonkey.net/
-// @version      1.6
+// @version      1.7.0
 // @description  修复抖音右下角 positionBox 元素缩放异常
 // @author       Lucas
 // @match        *://*.douyin.com/*
 // @match        *://*.iesdouyin.com/*
+// @license      GPLv3
 // @grant        none
+// @downloadURL https://update.greasyfork.org/scripts/533338/%E4%BF%AE%E5%A4%8D%E7%BC%A9%E6%94%BE%E5%BC%82%E5%B8%B8.user.js
+// @updateURL https://update.greasyfork.org/scripts/533338/%E4%BF%AE%E5%A4%8D%E7%BC%A9%E6%94%BE%E5%BC%82%E5%B8%B8.meta.js
 // ==/UserScript==
 
 (function() {
