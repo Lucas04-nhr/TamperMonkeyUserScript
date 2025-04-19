@@ -2,7 +2,7 @@
 // @name         修复缩放异常
 // @name-en      Douyin Scale Fix
 // @namespace    http://tampermonkey.net/
-// @version      1.9.1
+// @version      1.9.3
 // @description  修复抖音右下角 positionBox 元素缩放异常
 // @description-en  Fix the scale issue of the positionBox element in Douyin
 // @author       Lucas
@@ -16,12 +16,12 @@
 // @updateURL https://update.greasyfork.org/scripts/533338/%E4%BF%AE%E5%A4%8D%E7%BC%A9%E6%94%BE%E5%BC%82%E5%B8%B8.meta.js
 // ==/UserScript==
 
+
 (function() {
     'use strict';
 
+    // 步骤1: 定义目标元素选择器
     const targetElementSelector = '[class*="positionBox"]';  // 匹配包含 "positionBox" 子字符串的类属性
-    const maxWaitTime = 30000;  // 30秒超时
-    let lastActivityTime = Date.now();  // 记录上次活动时间
     let documentObserver = null;  // 用于监控文档变化的观察器
 
     function setupObservers() {
@@ -41,15 +41,10 @@
                 documentObserver.disconnect();
                 documentObserver = null;
             }
-        } else if ((Date.now() - lastActivityTime) < maxWaitTime) {
-            // 如果未找到元素，且未超时，继续轮询
-            console.log('未找到匹配元素，继续尝试...');
-            setTimeout(setupObservers, 500);  // 每500ms检查一次
         } else {
-            console.error('等待超时，未找到匹配元素。请检查页面或类名。');
-            if (documentObserver) {
-                documentObserver.disconnect();  // 清理观察器
-            }
+            // 如果未找到，继续轮询
+            console.log('未找到匹配元素，继续尝试...');
+            setTimeout(setupObservers, 500);  // 每500ms重新检查一次
         }
     }
 
@@ -58,8 +53,6 @@
         documentObserver = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
                 if (mutation.type === 'childList') {  // 子节点变化
-                    console.log('检测到 DOM 更新，重启计时器...');
-                    lastActivityTime = Date.now();  // 重置活动时间
                     setupObservers();  // 重新尝试查找元素
                 }
             });
