@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         修复缩放异常
 // @namespace    http://tampermonkey.net/
-// @version      1.9.8
+// @version      1.9.10
 // @description  修复抖音右下角 positionBox 元素缩放异常
 // @author       Lucas
 // @match        *://*.douyin.com/*
@@ -71,6 +71,12 @@
                 if (scaleValue !== null && scaleValue !== 1) {  // 如果 scale 不为 1
                     console.log('检测到 scale 不为 1，强制修正...');
                     fixScale(element);  // 修正为 scale(1)
+                }
+                else if (scaleValue === 1) {
+                    console.log('当前 scale 已为 1，无需修正。');
+                }
+                else {
+                    console.log('未检测到有效的 scale 值，可能是初始状态。');
                 }
             }
         });
