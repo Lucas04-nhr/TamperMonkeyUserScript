@@ -12,9 +12,8 @@
 // @grant        none
 // @downloadURL https://update.greasyfork.org/scripts/533338/%E4%BF%AE%E5%A4%8D%E7%BC%A9%E6%94%BE%E5%BC%82%E5%B8%B8.user.js
 // @updateURL https://update.greasyfork.org/scripts/533338/%E4%BF%AE%E5%A4%8D%E7%BC%A9%E6%94%BE%E5%BC%82%E5%B8%B8.meta.js
+
 // ==/UserScript==
-
-
 (function() {
     'use strict';
 
