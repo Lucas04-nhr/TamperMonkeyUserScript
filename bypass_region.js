@@ -1,10 +1,11 @@
 // ==UserScript==
-// @name         Bypass the GitLab Region Restriction
+// @name         Bypass the GitLab & GitHub Region Restriction
 // @namespace    http://tampermonkey.net/
-// @version      0.5.1
+// @version      0.6.0
 // @description  Bypass the GitLab Region Restriction by modifying the navigator.language field
 // @author       Lucas
 // @match        https://*.gitlab.com/*
+// @match        https://*.github.com/*
 // @grant        GM_registerMenuCommand
 // @grant        GM_setValue
 // @grant        GM_getValue
@@ -43,4 +44,15 @@
           return isEnabled ? [newLanguage] : [originalLanguage];
       }
   });
+
+  const originalOpen = XMLHttpRequest.prototype.open;
+  XMLHttpRequest.prototype.open = function(method, url, async, user, password) {
+    this.addEventListener('readystatechange', function() {
+      if (this.readyState === 1 && isEnabled) {
+        this.setRequestHeader('Accept-Language', 'en-US');
+      }
+    });
+    originalOpen.apply(this, arguments);
+  };
+  
 })();
