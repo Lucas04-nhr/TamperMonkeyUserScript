@@ -1,5 +1,6 @@
-! Title: SijieMakeding Blocklist
+! Title: Lucas's Blocklist
 ! Homepage: https://github.com/Lucas04-nhr
+# Sijiemakeding Malware Websites
 ||2144.cn^$all
 ||4009997658.com^$all
 ||6xigema.cn^$all
@@ -126,3 +127,17 @@
 ||zbrush.cc^$all
 ||zhzzx.com^$all
 ||zuoqudashi.net^$all
+
+# QQ Hotfix Patch website
+|| qqpatch.gtimg.cn^$all
+0.0.0.0 qqpatch.gtimg.cn
+
+# Yuanshen Log Upload
+0.0.0.0 dispatchcnglobal.yuanshen.com
+0.0.0.0 ys-log-upload.mihoyo.com
+0.0.0.0 apm-log-upload-v6.mihoyo.com
+
+# Honkai Star Rail Log Upload
+0.0.0.0 globaldp-prod-cn01.bhsr.com
+0.0.0.0 globaldp-prod-os01.starrails.com
+
