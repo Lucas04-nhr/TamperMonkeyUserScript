@@ -49,6 +49,7 @@
 ||hypeapp.cn^$all
 ||hypersnap.mairuan.com^$all
 ||hypersnap.net^$all
+||ibmspss.cn^$all
 ||iconworkshop.cn^$all
 ||idapro.net.cn^$all
 ||idmchina.net^$all
