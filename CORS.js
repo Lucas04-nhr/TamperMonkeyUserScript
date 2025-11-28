@@ -2,7 +2,8 @@
 // @name         npmmirror CORS Bypass for Lobe Chat self-hosted
 // @author       Lucas
 // @namespace    https://lobe.lucas04.top/
-// @version      0.1
+// @version      0.2
+// @license      GPLv3
 // @description  拦截并代理 https://registry.npmmirror.com/* 所有fetch和XHR请求，绕过CORS
 // @match        https://lobe.lucas04.top/*
 // @grant        GM_xmlhttpRequest
