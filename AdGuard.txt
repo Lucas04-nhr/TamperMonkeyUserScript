@@ -143,10 +143,10 @@
 0.0.0.0 globaldp-prod-os01.starrails.com
 
 # My own websites
-@@||bitwarden.lucas04.top^$important,all
-@@||phaethon.lucas04.top^$important,all
-@@||hyacine.lucas04.top^$important,all
-@@||panel.lucas04.top^$important,all
-@@||s.lucas04.top^$important,all
-@@||vert.lucas04.top^$important,all
-@@||drive.lucas04.top^$important,all
+@@||bitwarden.lucas04.top^$important,document
+@@||phaethon.lucas04.top^$important,document
+@@||hyacine.lucas04.top^$important,document
+@@||panel.lucas04.top^$important,document
+@@||s.lucas04.top^$important,document
+@@||vert.lucas04.top^$important,document
+@@||drive.lucas04.top^$important,document
