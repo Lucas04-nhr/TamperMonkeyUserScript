@@ -142,3 +142,6 @@
 0.0.0.0 globaldp-prod-cn01.bhsr.com
 0.0.0.0 globaldp-prod-os01.starrails.com
 
+# My own websites
+@@||*.lucas04.top^$important,all
+@@||*.lucas04.qzz.io^$important,all
