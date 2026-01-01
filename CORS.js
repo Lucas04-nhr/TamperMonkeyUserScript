@@ -1,10 +1,12 @@
 // ==UserScript==
 // @name         npmmirror CORS Bypass for Lobe Chat self-hosted (Fixed)
+// @author       Lucas
 // @namespace    https://lobe.lucas04.top/
-// @version      0.3
+// @version      0.4
 // @grant        GM_xmlhttpRequest
 // @connect      npmmirror.com
 // @match        https://lobe.lucas04.top/*
+// @match        https://lobe.lucas04.qzz.io/*
 // ==/UserScript==
 
 (function() {
