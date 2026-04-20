@@ -129,6 +129,10 @@
 ||zhzzx.com^$all
 ||zuoqudashi.net^$all
 
+# Sogou Update
+||get.sogou.com^$all
+0.0.0.0 get.sogou.com
+
 # QQ Hotfix Patch website
 || qqpatch.gtimg.cn^$all
 0.0.0.0 qqpatch.gtimg.cn
