@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         App Store Link to itms-apps Redirect
+// @name         App Store Link Redirect
 // @namespace    http://tampermonkey.net/
-// @version      0.1.0
+// @version      1.1.0
 // @description  Redirect App Store web links to itms-apps and provide quick region switch shortcuts.
 // @author       Lucas
 // @match        *://*/*
@@ -9,22 +9,34 @@
 // @grant        GM_getValue
 // @grant        GM_setValue
 // @license      GPLv3
+// @icon        https://www.apple.com/favicon.ico
 // ==/UserScript==
 
 (function () {
   "use strict";
 
   const STORAGE_KEY_REDIRECT_ENABLED = "isRedirectEnabled";
+  const STORAGE_KEY_REGION_MENU_EXPANDED = "isRegionMenuExpanded";
   let isRedirectEnabled = GM_getValue(STORAGE_KEY_REDIRECT_ENABLED, true);
+  let isRegionMenuExpanded = GM_getValue(
+    STORAGE_KEY_REGION_MENU_EXPANDED,
+    false,
+  );
 
   const COMMON_REGIONS = [
     { name: "China Mainland", cc: "CN", dsf: "143465" },
-    { name: "Hong Kong", cc: "HK", dsf: "143463" },
-    { name: "United States", cc: "US", dsf: "143441" },
-    { name: "Turkey", cc: "TR", dsf: "143480" },
-    { name: "Japan", cc: "JP", dsf: "143462" },
     { name: "Denmark", cc: "DK", dsf: "143458" },
+    { name: "Hong Kong", cc: "HK", dsf: "143463" },
+    { name: "Japan", cc: "JP", dsf: "143462" },
+    { name: "Turkey", cc: "TR", dsf: "143480" },
+    { name: "United States", cc: "US", dsf: "143441" },
   ];
+
+  function getSortedRegions() {
+    return [...COMMON_REGIONS].sort((left, right) =>
+      left.cc.localeCompare(right.cc),
+    );
+  }
 
   function isHttpProtocol(protocol) {
     return protocol === "http:" || protocol === "https:";
@@ -58,6 +70,15 @@
     window.location.reload();
   }
 
+  function toggleRegionMenu() {
+    isRegionMenuExpanded = !isRegionMenuExpanded;
+    GM_setValue(STORAGE_KEY_REGION_MENU_EXPANDED, isRegionMenuExpanded);
+    alert(
+      `Region shortcuts are now ${isRegionMenuExpanded ? "expanded" : "collapsed"}.`,
+    );
+    window.location.reload();
+  }
+
   function buildRegionSwitchUrl(region) {
     const query = new URLSearchParams({ dsf: region.dsf, cc: region.cc });
     return `itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/resetAndRedirect?${query.toString()}`;
@@ -75,11 +96,18 @@
       toggleRedirect,
     );
 
+    const regionStateText = isRegionMenuExpanded ? "expanded" : "collapsed";
+    const regionStateIcon = isRegionMenuExpanded ? "▼" : "▶";
     GM_registerMenuCommand(
-      "----- App Store Region Shortcuts -----",
-      function () {},
+      `${regionStateIcon} Region Shortcuts (current: ${regionStateText})`,
+      toggleRegionMenu,
     );
-    COMMON_REGIONS.forEach((region) => {
+
+    if (!isRegionMenuExpanded) {
+      return;
+    }
+
+    getSortedRegions().forEach((region) => {
       GM_registerMenuCommand(
         `Switch Region: ${region.cc} - ${region.name}`,
         function () {

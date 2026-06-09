@@ -1,16 +1,17 @@
-# itms Redirect
+# App Store Link to `itms-apps://` Redirect
 
 This Tampermonkey script redirects App Store web links to the `itms-apps://` protocol, so clicking App Store links can open the App Store app directly, to bypass the regional restriction of accessing web App Store in China Mainland. It also provides quick shortcuts to switch App Store regions.
 
 ## Features
 
-- Redirects App Store web links such as `https://apps.apple.com/app/id6755328989` to `itms-apps://apps.apple.com/app/id6755328989`.
+- Redirects App Store web links such as `https://apps.apple.com/app/<app_id>` to `itms-apps://apps.apple.com/app/<app_id>`.
 - Supports three redirect scenarios:
   1.  Intercepting user clicks on matching links.
   2.  Rewriting matching links in the current page (including dynamically added links).
   3.  Auto-redirecting direct visits to `https://apps.apple.com/...` in the address bar.
 - Provides a menu toggle to enable or disable redirect behavior.
 - Provides 5 common App Store region switch shortcuts.
+- Region shortcuts are grouped under a collapsible menu and sorted by `cc`.
 
 ## Installation
 
@@ -29,15 +30,17 @@ After enabling the script:
 ## Menu Commands
 
 - **Toggle Redirect**: Enable or disable all redirect features.
+- **Region Shortcuts**: Expand or collapse the region list.
 - **Switch Region**: Open App Store internal switch URL:
   - `itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/resetAndRedirect?dsf={dsf}&cc={cc}`
 
 ## Common Regions (5)
 
 - **CN**: China Mainland (`dsf=143465`)
-- **HK**: Hong Kong (`dsf=143463`)
-- **US**: United States (`dsf=143441`)
-- **TR**: Turkey (`dsf=143480`)
 - **DK**: Denmark (`dsf=143458`)
+- **HK**: Hong Kong (`dsf=143463`)
+- **JP**: Japan (`dsf=143462`)
+- **TR**: Turkey (`dsf=143480`)
+- **US**: United States (`dsf=143441`)
 
 > Region mapping values (`cc`, `dsf`) may change if Apple updates storefront definitions in the future.
