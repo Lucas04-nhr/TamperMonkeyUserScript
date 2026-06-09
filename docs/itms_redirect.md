@@ -16,8 +16,7 @@ This Tampermonkey script redirects `https://` App Store web links to the `itms-a
 ## Installation
 
 1. Install [Tampermonkey](https://www.tampermonkey.net/).
-2. Create a new script and paste the content of `itms_redirect.js`.
-3. Save and enable the script.
+2. Visit the script's [Greasy Fork page](https://greasyfork.org/en/scripts/581888-app-store-link-redirect) and click "Install this script".
 
 ## Usage
 
