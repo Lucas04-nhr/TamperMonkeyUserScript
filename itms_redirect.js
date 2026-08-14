@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         App Store Link Redirect
 // @namespace    http://tampermonkey.net/
-// @version      1.1.0
-// @description  Redirect App Store web links to itms-apps and provide quick region switch shortcuts.
+// @version      1.2.0
+// @description  Redirect App Store web links with the native deeplink for the current Apple device.
 // @author       Lucas
 // @match        *://*/*
 // @grant        GM_registerMenuCommand
@@ -49,8 +49,31 @@
     );
   }
 
-  function toItmsAppsUrl(url) {
-    return `itms-apps://${url.host}${url.pathname}${url.search}${url.hash}`;
+  function getAppleDeeplinkScheme() {
+    const userAgent = navigator.userAgent || "";
+    const platform =
+      navigator.userAgentData?.platform || navigator.platform || "";
+    const isIPadOS =
+      platform === "MacIntel" && Number(navigator.maxTouchPoints) > 1;
+
+    if (/iPad|iPhone|iPod/i.test(userAgent) || isIPadOS) {
+      return "itms-apps";
+    }
+
+    if (/Macintosh|Mac OS X/i.test(userAgent) || /^Mac/i.test(platform)) {
+      return "macappstore";
+    }
+
+    return null;
+  }
+
+  function toAppStoreDeeplink(url) {
+    const scheme = getAppleDeeplinkScheme();
+    if (!scheme) {
+      return null;
+    }
+
+    return `${scheme}://${url.host}${url.pathname}${url.search}${url.hash}`;
   }
 
   function maybeParseUrl(input) {
@@ -80,12 +103,20 @@
   }
 
   function buildRegionSwitchUrl(region) {
+    const scheme = getAppleDeeplinkScheme();
+    if (!scheme) {
+      return null;
+    }
+
     const query = new URLSearchParams({ dsf: region.dsf, cc: region.cc });
-    return `itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/resetAndRedirect?${query.toString()}`;
+    return `${scheme}://itunes.apple.com/WebObjects/MZStore.woa/wa/resetAndRedirect?${query.toString()}`;
   }
 
   function switchRegion(region) {
-    window.location.href = buildRegionSwitchUrl(region);
+    const deeplink = buildRegionSwitchUrl(region);
+    if (deeplink) {
+      window.location.href = deeplink;
+    }
   }
 
   function registerMenus() {
@@ -123,9 +154,9 @@
       return;
     }
 
-    const itmsHref = toItmsAppsUrl(parsed);
-    if (anchor.href !== itmsHref) {
-      anchor.href = itmsHref;
+    const deeplink = toAppStoreDeeplink(parsed);
+    if (deeplink && anchor.href !== deeplink) {
+      anchor.href = deeplink;
       anchor.dataset.itmsRedirectRewritten = "1";
     }
   }
@@ -183,9 +214,14 @@
       return;
     }
 
+    const deeplink = toAppStoreDeeplink(parsed);
+    if (!deeplink) {
+      return;
+    }
+
     event.preventDefault();
     event.stopPropagation();
-    window.location.href = toItmsAppsUrl(parsed);
+    window.location.href = deeplink;
   }
 
   function maybeRedirectCurrentPage() {
@@ -198,7 +234,10 @@
       return;
     }
 
-    window.location.replace(toItmsAppsUrl(current));
+    const deeplink = toAppStoreDeeplink(current);
+    if (deeplink) {
+      window.location.replace(deeplink);
+    }
   }
 
   registerMenus();
