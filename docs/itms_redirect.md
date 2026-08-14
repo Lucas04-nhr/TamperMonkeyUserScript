@@ -33,7 +33,7 @@ After enabling the script:
 
 ## Region Switcher
 
-- The switcher is shown only in the top-level page on macOS, iOS, and iPadOS.
+- The switcher is shown only on top-level `apps.apple.com` pages on macOS, iOS, and iPadOS.
 - Selecting a region opens Apple's internal switch URL with `macappstore://` and `mt=12` on macOS, or `itms-apps://` on iOS/iPadOS.
 - Apple's legacy `resetAndRedirect` endpoint is undocumented. On macOS, App Store may show “Cannot Connect” even when the storefront changed successfully.
 

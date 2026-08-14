@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         App Store Link Redirect
 // @namespace    http://tampermonkey.net/
-// @version      1.3.2
+// @version      1.3.3
 // @description  Redirect App Store web links with the native deeplink for the current Apple device.
 // @author       Lucas
 // @match        *://*/*
@@ -144,7 +144,13 @@
   }
 
   function mountRegionSwitcher() {
-    if (window.top !== window.self || !getAppleDeeplinkScheme()) {
+    const current = maybeParseUrl(window.location.href);
+    if (
+      window.top !== window.self ||
+      !current ||
+      !isWebAppStoreUrl(current) ||
+      !getAppleDeeplinkScheme()
+    ) {
       return;
     }
 
