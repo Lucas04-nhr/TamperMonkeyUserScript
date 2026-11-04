@@ -1,8 +1,6 @@
 ! Title: Lucas's DNS Blocklist
 ! Homepage: https://github.com/Lucas04-nhr
-! For AdGuard Home / AdGuard DNS / AdGuard "DNS filtering" only.
-! Converted from AdGuard.txt: $all removed (not supported in DNS rules),
-! redundant subdomain rules removed, comments changed to "!".
+！Version: 1793808069
 
 ! Sijiemakeding Malware Websites
 ||2144.cn^
