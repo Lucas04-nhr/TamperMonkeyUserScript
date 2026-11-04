@@ -133,7 +133,7 @@
 ||get.sogou.com^$important
 
 # QQ Hotfix Patch website
-|| qqpatch.gtimg.cn^$important
+||qqpatch.gtimg.cn^$important
 
 # Yuanshen Log Upload
 ||dispatchcnglobal.yuanshen.com^$important
