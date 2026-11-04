@@ -1,5 +1,7 @@
 ! Title: Lucas's Blocklist
+！Version: 1793808069
 ! Homepage: https://github.com/Lucas04-nhr
+
 # Sijiemakeding Malware Websites
 ||2144.cn^$all
 ||4009997658.com^$all
