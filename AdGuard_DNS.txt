@@ -1,7 +1,7 @@
 !Title: Lucas's DNS Blocklist
 !Homepage: https://github.com/Lucas04-nhr
 !Description: This is a DNS blocklist for AdGuard Home, AdGuard DNS, and other DNS servers. It blocks malware websites, Sogou update servers, QQ hotfix patch servers, Yuanshen log upload servers, Honkai Star Rail log upload servers, MIUI Guard servers, and my own websites.
-! Version: 1.0.0
+!Version: 1.0.0
 
 ! Sijiemakeding Malware Websites
 ||2144.cn^
