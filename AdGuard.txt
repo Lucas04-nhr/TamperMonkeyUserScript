@@ -130,28 +130,26 @@
 ||zuoqudashi.net^$all
 
 # Sogou Update
-||get.sogou.com^$all
-0.0.0.0 get.sogou.com
+||get.sogou.com^$important
 
 # QQ Hotfix Patch website
-|| qqpatch.gtimg.cn^$all
-0.0.0.0 qqpatch.gtimg.cn
+|| qqpatch.gtimg.cn^$important
 
 # Yuanshen Log Upload
-0.0.0.0 dispatchcnglobal.yuanshen.com
-0.0.0.0 ys-log-upload.mihoyo.com
-0.0.0.0 apm-log-upload-v6.mihoyo.com
+||dispatchcnglobal.yuanshen.com^$important
+||ys-log-upload.mihoyo.com^$important
+||apm-log-upload-v6.mihoyo.com^$important
 
 # Honkai Star Rail Log Upload
-0.0.0.0 globaldp-prod-cn01.bhsr.com
-0.0.0.0 globaldp-prod-os01.starrails.com
+||globaldp-prod-cn01.bhsr.com^$important
+||globaldp-prod-os01.starrails.com^$important
+
+# Fuck MIUI Guard
+||flash.sec.miui.com^$important
+||fraud-detection.engine.miui.com^$important
+||eps.caict.ac.cn^$important
+||gateway-papa.cloud.weizhi.com^$important
+||dm.wo.com.cn^$important
 
 # My own websites
-@@||bitwarden.lucas04.top^$important,document
-@@||phaethon.lucas04.top^$important,document
-@@||hyacine.lucas04.top^$important,document
-@@||vnc.lucas04.top^$important,document
-@@||panel.lucas04.top^$important,document
-@@||s.lucas04.top^$important,document
-@@||vert.lucas04.top^$important,document
-@@||drive.lucas04.top^$important,document
+@@||lucas04.top^$important
