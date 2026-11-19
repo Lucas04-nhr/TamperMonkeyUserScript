@@ -144,3 +144,4 @@
 
 ! My own websites
 @@||lucas04.top^$important
+||router.lucas04.top^$dnsrewrite=192.168.31.1
