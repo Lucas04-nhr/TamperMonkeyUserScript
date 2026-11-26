@@ -1,7 +1,8 @@
 // ==UserScript==
 // @name         OWA Search History Blocker
+// @author       Lucas
 // @namespace    https://webmail.ku.dk/
-// @version      1.0.0
+// @version      1.1.0
 // @description  Blocks every OWA request that writes SearchHistory, and clears the saved history on load and when the tab is hidden or closed
 // @match        https://webmail.ku.dk/owa/*
 // @icon         https://res.cdn.office.net/assets/mail/pwa/v1/pngs/apple-touch-icon.png
