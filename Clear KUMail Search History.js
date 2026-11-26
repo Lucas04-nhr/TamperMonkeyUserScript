@@ -4,9 +4,13 @@
 // @version      0.2.0
 // @description  Blocks every OWA request that writes SearchHistory, and clears the saved history on load and when the tab is hidden or closed
 // @match        https://webmail.ku.dk/owa/*
+// @icon         https://res.cdn.office.net/assets/mail/pwa/v1/pngs/apple-touch-icon.png
 // @run-at       document-start
 // @grant        none
 // @sandbox      raw
+// @license      AGPL-3.0-or-later
+// @updateURL    https://raw.githubusercontent.com/Lucas04-nhr/TamperMonkeyUserScript/main/Clear%20KUMail%20Search%20History.js
+// @downloadURL  https://raw.githubusercontent.com/Lucas04-nhr/TamperMonkeyUserScript/main/Clear%20KUMail%20Search%20History.js
 // ==/UserScript==
 
 (function () {
